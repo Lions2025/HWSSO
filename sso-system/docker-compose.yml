@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  idp:
+    build: ./idp
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=development
+    networks:
+      - sso-net
+
+  sp:
+    build: ./sp
+    ports:
+      - "5001:5001"
+    environment:
+      - FLASK_ENV=development
+    networks:
+      - sso-net
+
+networks:
+  sso-net:
